@@ -1,4 +1,4 @@
-<%= search_form_for(@q, url: search_path, method: :get, class:'d-flex') do |f| %>
+<%= search_form_for(@query, url: search_path, method: :get, class:'d-flex') do |f| %>
   <%= text_field_tag "q[title_or_content_body_or_user_email_or_user_name_i_cont_any]" %>
   <%= f.submit "Search!", class: "btn btn-outline-success" %>
 <% end %>
