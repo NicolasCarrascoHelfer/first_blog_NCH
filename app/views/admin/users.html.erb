@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="text-center">Administrator</h1>
+  <%= render 'admin/nav_links'%>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Posts</th>
+        <th scope="col">Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user|%>
+        <tr>
+          <th><%= user.id %> </th>
+          <th><%= link_to user.name.truncate(15), user_path(user) %> </th>
+          <th><%= user.email %> </th>
+          <th><%= user.role %> </th>
+          <td><%= pluralize(user.posts.size, "Post")%> </td>
+          <td><%= pluralize(user.comments.size, "Comment")%> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

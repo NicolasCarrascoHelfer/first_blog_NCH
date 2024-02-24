@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="text-center">Administrator</h1>
+  <%= render 'admin/nav_links'%>
+  <%= render @post %>
+  <div>
+    <%= link_to "Edit this post", edit_post_path(@post) %> |
+    <%= link_to "Back to posts", posts_path %>
+    <%= button_to "Destroy this post", @post, method: :delete %>
+  </div>
+</div>
+<div class="container">
+  <% @post.comments.each do |comment| %>
+    <hr />
+    <%= comment.user.name %><br />
+    <% if (comment.updated_at - comment.created_at) > 1 %>
+      <span>Edited <%= time_ago_in_words(comment.updated_at) %> ago</span>
+    <% else %>
+      <span>Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
+    <% end %>
+    <div id="comment-body-<%= comment.id %>">
+      <%= comment.body %>
+    </div>
+  <% end %>
+</div>
