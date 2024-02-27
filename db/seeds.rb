@@ -13,7 +13,7 @@ User.create(email: "user@example.com", name: "User", password: "user123", passwo
 
 10.times do |x|
   post = Post.create(title: "Title #{x}", body: "Body #{x} filled", user_id: User.first.id)
-  5.times do |y|
+  3.times do |y|
     Comment.create(body: "Comment #{y}", user_id: User.second.id, post_id: post.id)
   end
 end
