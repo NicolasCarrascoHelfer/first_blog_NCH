@@ -10,6 +10,8 @@ puts "Seeding development database..."
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+uncat = Category.create(name: "Uncategorized")
+
 admin = User.create(email: "admin@example.com", first_name: "Ad", last_name: "Min", password: "admin123", password_confirmation: "admin123", role: User.roles[:admin])
 
 auser = User.create(email: "user@example.com", first_name: "Us", last_name: "Er", password: "user123", password_confirmation: "user123")
