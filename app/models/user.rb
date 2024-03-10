@@ -14,7 +14,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, if: :new_record?
-  #after_initialize :set_default_category, if: :new_record?
+  after_initialize :set_default_category, if: :new_record?
 
   cattr_accessor :form_steps do
     %w[sign_up set_name set_address find_users]
@@ -55,7 +55,7 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  #def set_default_category
-  #  self.category ||= Category.first
-  #end
+  def set_default_category
+    self.category ||= Category.first
+  end
 end
