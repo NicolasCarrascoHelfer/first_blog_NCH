@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  belongs_to :category, counter_cache: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :destroy
@@ -12,6 +14,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, if: :new_record?
+  #after_initialize :set_default_category, if: :new_record?
 
   cattr_accessor :form_steps do
     %w[sign_up set_name set_address find_users]
@@ -51,4 +54,8 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
+
+  #def set_default_category
+  #  self.category ||= Category.first
+  #end
 end
