@@ -16,7 +16,7 @@
       <% @users.each do |user|%>
         <tr>
           <th><%= user.id %> </th>
-          <th><%= link_to user.name.truncate(15), user_path(user) %> </th>
+          <th><%= link_to user.full_name.truncate(15), user_path(user) %> </th>
           <th><%= user.email %> </th>
           <th><%= user.role %> </th>
           <td><%= pluralize(user.posts.size, "Post")%> </td>
