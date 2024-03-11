@@ -1,0 +1,14 @@
+<div class="container">
+  <h4>
+    <%= "#{@category.name} - Posts: #{@category.posts_count}" %>
+  </h4>
+  <ul>
+    <% @posts.each do |post| %>
+      <%= render post %>
+      <p>
+        <%= link_to "Show this post", post %>
+      </p>
+    <% end %>
+  </ul>
+  <h5><%= "There aren't any posts with this category" if @category.posts_count == 0 %></h5>
+</div>

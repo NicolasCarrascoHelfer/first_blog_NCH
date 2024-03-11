@@ -3,16 +3,16 @@
     <strong>Title:</strong>
     <%= post.title %>
   </p>
-
   <strong>Posted by <%= link_to post.user.full_name, user_path(post.user) %></strong>
-
+  <p>
+    <strong>Category:</strong>
+    <%= post.category.name %>
+  </p>
   <p>
     <strong>Body:</strong>
     <%= post.body %>
   </p>
-
   <p>
     <%= pluralize(post.views, "view") %>
   </p>
-
 </div>

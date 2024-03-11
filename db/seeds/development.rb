@@ -10,7 +10,11 @@ puts "Seeding development database..."
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-uncat = Category.create(name: "Uncategorized")
+Category.create(name: "Uncategorized")
+
+cat1 = Category.create(name: "TestCat1")
+
+cat2 = Category.create(name: "TestCat2")
 
 admin = User.create(email: "admin@example.com", first_name: "Ad", last_name: "Min", password: "admin123", password_confirmation: "admin123", role: User.roles[:admin])
 
@@ -25,7 +29,7 @@ admin.update(address_id: adad.id)
 auser.update(address_id: usad.id)
 
 5.times do |x|
-  post = Post.create(title: "Title #{x}", body: "Body #{x} filled", user_id: admin.id)
+  post = Post.create(title: "Title #{x}", body: "Body #{x} filled", user_id: admin.id, category: cat1)
   3.times do |y|
     Comment.create(body: "Comment #{y}", user_id: auser.id, post_id: post.id)
   end
@@ -35,7 +39,7 @@ auser.update(address_id: usad.id)
 end
 
 5.times do |x|
-  post = Post.create(title: "Title #{x + 5}", body: "Body #{x + 5} filled", user_id: auser.id)
+  post = Post.create(title: "Title #{x + 5}", body: "Body #{x + 5} filled", user_id: auser.id, category: cat2)
   3.times do |y|
     Comment.create(body: "Comment #{y}", user_id: auser.id, post_id: post.id)
   end

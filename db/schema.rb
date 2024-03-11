@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_214500) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "posts_count"
+    t.integer "posts_count", default: 0
   end
 
   create_table "comments", force: :cascade do |t|

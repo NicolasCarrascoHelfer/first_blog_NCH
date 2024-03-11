@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Categories</h1>
+  <div>
+    <% @categories.each do |category| %>
+      <h4>
+        <%= link_to "#{category.name} - Posts: #{category.posts_count}", category %>
+      </h4>
+      <ul>
+        <% @posts.each do |post| %>
+          <% if post.category == category%>
+            <li>
+              <%= link_to "#{post.title}", post%>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
