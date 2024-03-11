@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[ show create update destroy ]
   before_action :authenticate_user!, except: %i[show index]
 
   def index
@@ -11,7 +11,16 @@ class CategoriesController < ApplicationController
     @posts = @category.posts.includes(:user, :rich_text_body).all.order(created_at: :desc)
   end
 
-  def edit
+  def create
+    @category = Category.new(category_params)
+
+    if @category.save
+      flash[:notice] = "Category has been created"
+      redirect_to category_path(@category)
+    else
+      flash[:notice] = "Category has not been created"
+      redirect_to category_path(@category)
+    end
   end
 
   def update
@@ -24,6 +33,10 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+
+    if params[:id] != @category.slug
+      return redirect_to @category, :status => :moved_permanently
+    end
   end
 
   def category_params
