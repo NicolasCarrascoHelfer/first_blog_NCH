@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show create update destroy ]
+  before_action :set_category, only: %i[ show update destroy ]
   before_action :authenticate_user!, except: %i[show index]
 
   def index
@@ -11,15 +11,19 @@ class CategoriesController < ApplicationController
     @posts = @category.posts.includes(:user, :rich_text_body).all.order(created_at: :desc)
   end
 
+  def new
+    @category = Category.new
+  end
+
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      flash[:notice] = "Category has been created"
-      redirect_to category_path(@category)
-    else
-      flash[:notice] = "Category has not been created"
-      redirect_to category_path(@category)
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to categories_path, notice: "Category was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
