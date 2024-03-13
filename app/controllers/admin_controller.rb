@@ -14,6 +14,10 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
+  def categories
+    @categories = Category.all
+  end
+
   def show_post
     @post = Post.includes(:user, comments: [:user, :rich_text_body]).find(params[:id])
   end

@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["user", "content"]
+    ["user", "content", "category"]
   end
 
   private

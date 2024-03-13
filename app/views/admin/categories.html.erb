@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="text-center">Administrator</h1>
+  <%= render 'admin/nav_links'%>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Category</th>
+        <th scope="col">Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category|%>
+        <tr>
+          <th><%= category.id %> </th>
+          <td><%= link_to category.name.truncate(15), category_path(category)%> </td>
+          <td><%= pluralize(category.posts.size, "Post")%> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

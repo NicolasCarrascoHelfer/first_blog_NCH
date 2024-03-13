@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "admin/users"
     get "admin/show_post/:id", to: "admin#show_post", as: "admin_post"
     get "categories/new"
+    get "admin/categories"
   end
   get "search", to: "search#index", via: [:get, :post]
   devise_for :users, controllers: {

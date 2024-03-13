@@ -8,4 +8,8 @@ class Category < ApplicationRecord
   def should_generate_new_friendly_id?
     name_changed? || slug.blank?
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

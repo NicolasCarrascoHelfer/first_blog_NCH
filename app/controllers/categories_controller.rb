@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show update destroy ]
+  before_action :set_category, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[show index]
 
   def index
@@ -15,6 +15,10 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit
+
+  end
+
   def create
     @category = Category.new(category_params)
 
@@ -28,6 +32,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+        if @category.update(category_params)
+          format.html { redirect_to admin_categories_path, notice: "Category was successfully updated." }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+        end
+      end
   end
 
   def destroy
